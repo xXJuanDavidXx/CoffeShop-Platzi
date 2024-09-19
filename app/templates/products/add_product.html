@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<form action="{% url 'ola' %}" method='post'>
+	{% csrf_token %}
+	
+	{{form.as_p}}
+<button type=submit>boton</button>
+</form>
+
+
+{% endblock  %}
+
+
+
+

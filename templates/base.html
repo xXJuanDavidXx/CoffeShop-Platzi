@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LosColores</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+    <!-- Navbar -->
+    <nav class="bg-gray-700 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-white text-3xl font-bold">LosColores</h1>
+
+            <!-- Dropdown for smaller screens -->
+            <div class="sm:hidden">
+                <label for="Tab" class="sr-only">Tab</label>
+                <select id="Tab" class="w-full rounded-md border-gray-200">
+                    <option>Logout</option>
+                    <option>Login</option>
+                    <option>Signup</option>
+                    <option selected>Notifications</option>
+                </select>
+            </div>
+
+            <!-- Tabs for larger screens -->
+            <div class="hidden sm:block">
+                <nav class="flex gap-6" aria-label="Tabs">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'logout' %}" class="shrink-0 rounded-lg p-2 text-sm font-medium bg-orange-300 text-orange-800 hover:bg-orange-400">
+                            Logout
+                        </a>
+
+			 <a href="{% url 'lista' %}" class="shrink-0 rounded-lg p-2 text-sm font-medium bg-orange-300 text-orange-800 hover:bg-orange-400">
+                            Home
+                        </a>
+                    {% else %}
+                        {% if current_page == 'signup' %}
+                            <a href="{% url 'Login' %}" class="shrink-0 rounded-lg p-2 text-sm font-medium bg-orange-300 text-orange-800 hover:bg-orange-400">
+                                Login
+                            </a>
+                        {% else %}
+                            <a href="{% url 'Login' %}" class="shrink-0 rounded-lg p-2 text-sm font-medium bg-orange-300 text-orange-800 hover:bg-orange-400">
+                                Login
+                            </a>
+                            <a href="{% url 'Signup' %}" class="shrink-0 rounded-lg bg-orange-300 p-2 text-sm font-medium text-orange-800 hover:bg-orange-400" aria-current="page">
+                                Signup
+                            </a>
+                        {% endif %}
+                    {% endif %}
+                </nav>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <div class="container mx-auto py-8">
+        {% block content %}
+        <!-- Aquí va el contenido específico de cada página -->
+        {% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-200 py-4 mt-8">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 LosColores - Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+
