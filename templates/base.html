@@ -13,7 +13,7 @@
         <div class="container mx-auto flex justify-between items-center">
             <h1 class="text-white text-3xl font-bold">LosColores</h1>
 
-            <!-- Dropdown for smaller screens -->
+            <!-- Para pantallas mas pequeñas -->
             <div class="sm:hidden">
                 <label for="Tab" class="sr-only">Tab</label>
                 <select id="Tab" class="w-full rounded-md border-gray-200">
@@ -24,7 +24,7 @@
                 </select>
             </div>
 
-            <!-- Tabs for larger screens -->
+            <!--Los botones se definen segun si el usuario esta autenticado o no-->
             <div class="hidden sm:block">
                 <nav class="flex gap-6" aria-label="Tabs">
                     {% if user.is_authenticated %}
@@ -35,6 +35,12 @@
 			 <a href="{% url 'lista' %}" class="shrink-0 rounded-lg p-2 text-sm font-medium bg-orange-300 text-orange-800 hover:bg-orange-400">
                             Home
                         </a>
+		    {% if current_page != 'miorden' %}
+		    <a href="{% url 'my_order' %}" class="shrink-0 rounded-lg p-2 text-sm font-medium bg-orange-300 text-orange-800 hover:bg-orange-400">
+                            Mi Pedido
+                        </a>
+		    {% endif %}
+
                     {% else %}
                         {% if current_page == 'signup' %}
                             <a href="{% url 'Login' %}" class="shrink-0 rounded-lg p-2 text-sm font-medium bg-orange-300 text-orange-800 hover:bg-orange-400">
